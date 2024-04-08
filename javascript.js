@@ -3,6 +3,7 @@ compchoice = ['rock', 'paper', 'scissors']
 let cScore = 0;
 let hScore = 0;
 
+
 function getComputerChoice(compchoice) {
     let compselection = compchoice[Math.floor(Math.random()*compchoice.length)];
     return compselection
@@ -35,9 +36,9 @@ scissors.addEventListener("click",() => {
 // the actual game
 function game() {
 
-let compselection = getComputerChoice(compchoice); 
-
 let result = "";
+
+let compselection = getComputerChoice(compchoice); 
 
 if (humanselection == compselection) {
     result = "draw! try again";    
@@ -87,13 +88,18 @@ compScore.classList.add("compScore");
 compScore.textContent = "computer score = " + cScore;  
 document.body.append(compScore);
 
-if (hScore == cScore) {
-    outcome = "it's a draw!"
-}
-else if (hScore > cScore){
+if (hScore === 5) {
     outcome = "you win!"
 }
 else {
     outcome = "you lose!"
+}
+
+if (hScore === 5 || cScore === 5) {
+    const endGame = document.createElement("div");
+    endGame.classList.add("endGame");
+    endGame.textContent = outcome
+    endGame.style.fontSize = "32px"
+    document.body.append(endGame);
 }
 }
